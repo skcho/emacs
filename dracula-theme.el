@@ -19,24 +19,24 @@
 (deftheme dracula)
 
 (let ((class '((class color) (min-colors 89)))
-      (fg1 "#f8f8f2")
+      (fg1 "#f8f8f2")			; white
       (fg2 "#e2e2dc")
       (fg3 "#ccccc7")
       (fg4 "#b6b6b2")
-      (bg1 "#282a36")
+      (bg1 "#282a36")			; black
       (bg2 "#373844")
       (bg3 "#464752")
       (bg4 "#565761")
-      (bg5 "#44475a")
+      (bg5 "#44475a")			; dark gray
       (key2 "#0189cc")
       (key3 "#ff79c6")
-      (builtin "#ffb86c")
-      (keyword "#ff79c6")
-      (const   "#8be9fd")
-      (comment "#6272a4")
-      (func    "#50fa7b")
-      (str     "#f1fa8c")
-      (type    "#bd93f9")
+      (builtin "#ffb86c")		; orange
+      (keyword "#ff79c6")		; pink
+      (const   "#8be9fd")		; cyan
+      (comment "#6272a4")		; blue
+      (func    "#50fa7b")		; green
+      (str     "#f1fa8c")		; yellow
+      (type    "#bd93f9")		; purple
       (var     "#f8f8f2")
       (warning "#ffb86c")
       (rainbow-1 "#f8f8f2")
@@ -47,7 +47,7 @@
       (rainbow-6 "#50fa7b")
       (rainbow-7 "#f1fa8c")
       (rainbow-8 "#0189cc")
-      (rainbow-9 "#ff5555")
+      (rainbow-9 "#ff5555")		; red
       (eph-verbatim "#f1fa8c")
       (eph-code "#ff79c6"))
 
