@@ -227,7 +227,7 @@
    `(magit-section-highlight      ((,class (:background ,bg2))))
    ;; mode-line
    `(mode-line ((,class (:foreground nil :background ,bg3 :box ,bg3))))
-   `(mode-line-inactive ((,class (:foreground ,fg1 :background ,bg1 :box ,bg1))))
+   `(mode-line-inactive ((,class (:foreground ,fg1 :background ,bg2 :box ,bg2)))) ; modified
    ;; mu4e
    `(mu4e-cited-1-face ((,class (:foreground ,fg2))))
    `(mu4e-cited-7-face ((,class (:foreground ,fg3))))
@@ -342,14 +342,14 @@
    `(web-mode-warning-face ((,class (:inherit ,font-lock-warning-face))))
    ;; which-func
    `(which-func ((,class (:inherit ,font-lock-function-name-face))))
-   `(dired-directory ((,class (:foreground ,func :weight normal))))
+   `(dired-directory ((,class (:foreground ,comment :weight normal)))) ; modified
    `(dired-flagged ((,class (:foreground ,keyword))))
-   `(dired-header ((,class (:foreground ,fg3 :background ,func))))
+   `(dired-header ((,class (:foreground ,bg1 :background ,comment)))) ; modified
    `(dired-ignored ((,class (:inherit shadow))))
    `(dired-mark ((,class (:foreground ,var :weight bold))))
    `(dired-marked ((,class (:foreground ,builtin :weight bold))))
    `(dired-perm-write ((,class (:foreground ,fg3 :underline t))))
-   `(dired-symlink ((,class (:foreground ,str :weight normal :slant italic))))
+   `(dired-symlink ((,class (:foreground ,const :weight normal :slant italic)))) ; modified
    `(dired-warning ((,class (:foreground ,warning :underline t))))
    `(diredp-compressed-file-name ((,class (:foreground ,fg3))))
    `(diredp-compressed-file-suffix ((,class (:foreground ,fg4))))
