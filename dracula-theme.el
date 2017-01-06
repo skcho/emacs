@@ -432,7 +432,7 @@
    `(tuareg-font-lock-line-number-face ((,class (:foreground ,bg5))))
    `(tuareg-font-lock-operator-face ((,class (:foreground ,str))))
    `(tuareg-font-lock-module-face ((,class (:inherit ,font-lock-type-face))))
-   `(tuareg-font-lock-constructor-face ((,class (:inherit default))))
+   `(tuareg-font-lock-constructor-face ((,class (:foreground ,const))))
    `(tuareg-font-lock-error-face ((,class (:foreground ,str :background ,rainbow-9 :bold t))))
    `(tuareg-font-lock-interactive-output-face ((,class (:foreground ,bg5))))
    `(tuareg-font-lock-interactive-error-face ((,class (:inherit ,font-lock-warning-face))))
