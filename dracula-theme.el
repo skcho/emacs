@@ -4,6 +4,7 @@
 ;;
 ;; Code licensed under the MIT license
 
+;; Maintainer: Étienne Deparis <etienne@depar.is>
 ;; Author: film42
 ;; Version: 1.7.0
 ;; Package-Requires: ((emacs "24.3"))
@@ -14,7 +15,6 @@
 ;; A dark color theme available for a number of editors.
 
 ;;; Code:
-(require 'cl-lib)
 (deftheme dracula)
 
 
@@ -97,13 +97,14 @@ read it before opening a new issue about your will.")
                 (fg3             "#ccccc7" "#c6c6c6" "white")
                 (fg4             "#b6b6b2" "#b2b2b2" "white")
                 (other-blue      "#0189cc" "#0087ff" "brightblue")))
-      (faces '(;; default
+      (faces '(;; default / basic faces
                (cursor :background ,fg3)
-               (completions-first-difference :foreground ,dracula-pink :weight bold)
                (default :background ,dracula-bg :foreground ,dracula-fg)
                (default-italic :slant italic)
+               (error :foreground ,dracula-red)
                (ffap :foreground ,fg4)
                (fringe :background ,dracula-bg :foreground ,fg4)
+               (header-line :background ,dracula-bg)
                (highlight :foreground ,fg3 :background ,bg3)
                (hl-line :background ,dracula-current :extend t)
                (info-quoted-name :foreground ,dracula-orange)
@@ -119,20 +120,20 @@ read it before opening a new issue about your will.")
                     (list :weight 'bold :foreground dracula-pink)))
                (read-multiple-choice-face :inherit completions-first-difference)
                (region :inherit match :extend t)
-               (trailing-whitespace :foreground "unspecified-fg" :background ,dracula-orange)
-               (vertical-border :foreground ,bg2)
+               (shadow :foreground ,dracula-comment)
                (success :foreground ,dracula-green)
+               (tooltip :foreground ,dracula-fg :background ,dracula-current)
+               (trailing-whitespace :background ,dracula-orange)
+               (vertical-border :foreground ,bg2)
                (warning :foreground ,dracula-orange)
-               (error :foreground ,dracula-red)
-               (header-line :background ,dracula-bg)
-               ;; syntax
+               ;; syntax / font-lock
                (font-lock-builtin-face :foreground ,dracula-orange)
-               (font-lock-comment-face :foreground ,dracula-comment)
-               (font-lock-comment-delimiter-face :foreground ,dracula-comment)
+               (font-lock-comment-face :inherit shadow)
+               (font-lock-comment-delimiter-face :inherit shadow)
                (font-lock-constant-face :foreground ,dracula-cyan)
                (font-lock-doc-face :foreground ,dracula-comment)
                (font-lock-function-name-face :foreground ,dracula-green :weight bold)
-               (font-lock-keyword-face :weight bold :foreground ,dracula-pink)
+               (font-lock-keyword-face :foreground ,dracula-pink :weight bold)
                (font-lock-negation-char-face :foreground ,dracula-cyan)
                (font-lock-preprocessor-face :foreground ,dracula-orange)
                (font-lock-reference-face :foreground ,dracula-cyan)
@@ -140,8 +141,7 @@ read it before opening a new issue about your will.")
                (font-lock-regexp-grouping-construct :foreground ,dracula-purple)
                (font-lock-string-face :foreground ,dracula-yellow)
                (font-lock-type-face :foreground ,dracula-purple)
-               (font-lock-variable-name-face :foreground ,dracula-fg
-                                             :weight bold)
+               (font-lock-variable-name-face :foreground ,dracula-fg :weight bold)
                (font-lock-warning-face :foreground ,dracula-orange :background ,bg2)
                ;; auto-complete
                (ac-completion-face :underline t :foreground ,dracula-pink)
@@ -154,7 +154,7 @@ read it before opening a new issue about your will.")
                                        :foreground ,dracula-green)
                (company-scrollbar-bg :background ,dracula-comment)
                (company-scrollbar-fg :foreground ,other-blue)
-               (company-tooltip :foreground ,dracula-fg :background ,dracula-current)
+               (company-tooltip :inherit tooltip)
                (company-tooltip-search :foreground ,dracula-green
                                        :underline t)
                (company-tooltip-search-selection :background ,dracula-green
@@ -165,6 +165,10 @@ read it before opening a new issue about your will.")
                ;;(company-tooltip-common-selection :inherit company-tooltip-common)
                (company-tooltip-annotation :foreground ,dracula-cyan)
                ;;(company-tooltip-annotation-selection :inherit company-tooltip-annotation)
+               ;; completions (minibuffer.el)
+               (completions-annotations :inherit font-lock-comment-face)
+               (completions-common-part :foreground ,dracula-green)
+               (completions-first-difference :foreground ,dracula-pink :weight bold)
                ;; diff-hl
                (diff-hl-change :foreground ,dracula-orange :background ,dracula-orange)
                (diff-hl-delete :foreground ,dracula-red :background ,dracula-red)
@@ -281,10 +285,10 @@ read it before opening a new issue about your will.")
                (gnus-group-news-6-empty :inherit gnus-group-news-low-empty)
                (gnus-group-news-low :foreground ,dracula-current :weight bold)
                (gnus-group-news-low-empty :inherit gnus-group-news-low :weight normal)
-               (gnus-header-content :foreground ,dracula-pink)
+               (gnus-header-content :foreground ,dracula-purple)
                (gnus-header-from :foreground ,dracula-fg)
-               (gnus-header-name :foreground ,dracula-purple)
-               (gnus-header-subject :foreground ,dracula-green :weight bold)
+               (gnus-header-name :foreground ,dracula-green)
+               (gnus-header-subject :foreground ,dracula-pink :weight bold)
                (gnus-summary-markup-face :foreground ,dracula-cyan)
                (gnus-summary-high-unread :foreground ,dracula-pink :weight bold)
                (gnus-summary-high-read :inherit gnus-summary-high-unread :weight normal)
@@ -320,7 +324,7 @@ read it before opening a new issue about your will.")
                (helm-grep-file :foreground ,dracula-fg :background ,dracula-bg)
                (helm-grep-finish :foreground ,fg2 :background ,dracula-bg)
                (helm-grep-lineno :foreground ,dracula-fg :background ,dracula-bg)
-               (helm-grep-match :foreground "unspecified-fg" :background "unspecified-bg" :inherit helm-match)
+               (helm-grep-match :inherit match)
                (helm-grep-running :foreground ,dracula-green :background ,dracula-bg)
                (helm-header :foreground ,fg2 :background ,dracula-bg :underline nil :box nil)
                (helm-moccur-buffer :foreground ,dracula-green :background ,dracula-bg)
@@ -383,6 +387,27 @@ read it before opening a new issue about your will.")
                (ido-virtual :foreground ,dracula-cyan)
                (ido-incomplete-regexp :inherit font-lock-warning-face)
                (ido-indicator :foreground ,dracula-fg :background ,dracula-pink)
+               ;; ivy
+               (ivy-current-match
+                ,@(if dracula-alternate-mode-line-and-minibuffer
+                      (list :weight 'normal :foreground dracula-green)
+                    (list :weight 'bold :foreground dracula-pink)))
+               ;; Highlights the background of the match.
+               (ivy-minibuffer-match-face-1 :background ,dracula-current)
+               ;; Highlights the first matched group.
+               (ivy-minibuffer-match-face-2 :background ,dracula-green
+                                            :foreground ,dracula-bg)
+               ;; Highlights the second matched group.
+               (ivy-minibuffer-match-face-3 :background ,dracula-yellow
+                                            :foreground ,dracula-bg)
+               ;; Highlights the third matched group.
+               (ivy-minibuffer-match-face-4 :background ,dracula-pink
+                                            :foreground ,dracula-bg)
+               (ivy-confirm-face :foreground ,dracula-orange)
+               (ivy-match-required-face :foreground ,dracula-red)
+               (ivy-subdir :foreground ,dracula-yellow)
+               (ivy-remote :foreground ,dracula-pink)
+               (ivy-virtual :foreground ,dracula-cyan)
                ;; isearch
                (isearch :inherit match :weight bold)
                (isearch-fail :foreground ,dracula-bg :background ,dracula-orange)
@@ -511,13 +536,12 @@ read it before opening a new issue about your will.")
                           :box ,dracula-current :inverse-video nil
                           ,@(if dracula-alternate-mode-line-and-minibuffer
                                 (list :foreground fg3)
-                              (list :foreground "unspecified-fg")))
+                              (list :foreground dracula-fg)))
                (mode-line-inactive
-                :inverse-video nil
+                :background ,dracula-bg :inverse-video nil
                 ,@(if dracula-alternate-mode-line-and-minibuffer
-                      (list :foreground dracula-comment :background dracula-bg
-                            :box dracula-bg)
-                    (list :foreground dracula-fg :background bg2 :box bg2)))
+                      (list :foreground dracula-comment :box dracula-bg)
+                    (list :foreground fg4 :box bg2)))
                ;; mu4e
                (mu4e-unread-face :foreground ,dracula-pink :weight normal)
                (mu4e-view-url-number-face :foreground ,dracula-purple)
@@ -648,8 +672,8 @@ read it before opening a new issue about your will.")
                (rpm-spec-tag-face :foreground ,dracula-cyan)
                (rpm-spec-var-face :foreground ,dracula-orange)
                ;; selectrum-mode
-               (selectrum-current-candidate :foreground ,dracula-pink)
-               (selectrum-primary-highlight :foreground ,dracula-orange)
+               (selectrum-current-candidate :weight bold)
+               (selectrum-primary-highlight :foreground ,dracula-pink)
                (selectrum-secondary-highlight :foreground ,dracula-green)
                ;; show-paren
                (show-paren-match-face :background unspecified
@@ -692,7 +716,7 @@ read it before opening a new issue about your will.")
                (tab-line-close-highlight :foreground ,dracula-red)
                ;; term
                (term :foreground ,dracula-fg :background ,dracula-bg)
-               (term-color-black :foreground ,dracula-bg :background ,dracula-bg)
+               (term-color-black :foreground ,dracula-bg :background ,dracula-comment)
                (term-color-blue :foreground ,dracula-purple :background ,dracula-purple)
                (term-color-cyan :foreground ,dracula-cyan :background ,dracula-cyan)
                (term-color-green :foreground ,dracula-green :background ,dracula-green)
@@ -706,20 +730,25 @@ read it before opening a new issue about your will.")
                (undo-tree-visualizer-register-face :foreground ,dracula-purple)
                (undo-tree-visualizer-unmodified-face :foreground ,dracula-fg)
                ;; web-mode
-               (web-mode-builtin-face :inherit ,font-lock-builtin-face)
-               (web-mode-comment-face :inherit ,font-lock-comment-face)
-               (web-mode-constant-face :inherit ,font-lock-constant-face)
-               (web-mode-doctype-face :inherit ,font-lock-comment-face)
-               (web-mode-function-name-face :inherit ,font-lock-function-name-face)
+               (web-mode-builtin-face :inherit font-lock-builtin-face)
+               (web-mode-comment-face :inherit font-lock-comment-face)
+               (web-mode-constant-face :inherit font-lock-constant-face)
+               (web-mode-doctype-face :inherit font-lock-comment-face)
+               (web-mode-function-name-face :inherit font-lock-function-name-face)
                (web-mode-html-attr-name-face :foreground ,dracula-purple)
                (web-mode-html-attr-value-face :foreground ,dracula-green)
                (web-mode-html-tag-face :foreground ,dracula-pink :weight bold)
                (web-mode-keyword-face :foreground ,dracula-pink)
                (web-mode-string-face :foreground ,dracula-yellow)
-               (web-mode-type-face :inherit ,font-lock-type-face)
-               (web-mode-warning-face :inherit ,font-lock-warning-face)
+               (web-mode-type-face :inherit font-lock-type-face)
+               (web-mode-warning-face :inherit font-lock-warning-face)
                ;; which-func
-               (which-func :inherit ,font-lock-function-name-face)
+               (which-func :inherit font-lock-function-name-face)
+               ;; which-key
+               (which-key-key-face :inherit font-lock-builtin-face)
+               (which-key-command-description-face :inherit default)
+               (which-key-separator-face :inherit font-lock-comment-delimiter-face)
+               (which-key-local-map-description-face :foreground ,dracula-green)
                ;; whitespace
                (whitespace-big-indent :background ,dracula-red :foreground ,dracula-red)
                (whitespace-empty :background ,dracula-orange :foreground ,dracula-red)
@@ -733,8 +762,8 @@ read it before opening a new issue about your will.")
                (whitespace-tab :background ,bg2 :foreground ,dracula-comment)
                (whitespace-trailing :inherit trailing-whitespace)
                ;; yard-mode
-               (yard-tag-face :inherit ,font-lock-builtin-face)
-               (yard-directive-face :inherit ,font-lock-builtin-face)
+               (yard-tag-face :inherit font-lock-builtin-face)
+               (yard-directive-face :inherit font-lock-builtin-face)
                ;; eshell
                (eshell-ls-directory :foreground ,dracula-comment :weight bold)
                (eshell-ls-symlink :foreground ,dracula-cyan :weight bold)
@@ -766,25 +795,44 @@ read it before opening a new issue about your will.")
 
   (apply #'custom-theme-set-faces
          'dracula
-         (let ((color-names (mapcar #'car colors))
-               (graphic-colors (mapcar #'cadr colors))
-               (term-colors (mapcar #'car (mapcar #'cddr colors)))
-               (tty-colors (mapcar #'car (mapcar #'last colors)))
-               (expand-for-kind
-                (lambda (kind spec)
-                  (when (and (string= (symbol-name kind) "term-colors")
-                             dracula-use-24-bit-colors-on-256-colors-terms)
-                    (setq kind 'graphic-colors))
-                  (cl-progv color-names (symbol-value kind)
-                    (eval `(backquote ,spec))))))
-           (cl-loop for (face . spec) in faces
-                    collect `(,face
-                              ((((min-colors 16777216)) ; fully graphical envs
-                                ,(funcall expand-for-kind 'graphic-colors spec))
-                               (((min-colors 256))      ; terminal withs 256 colors
-                                ,(funcall expand-for-kind 'term-colors spec))
-                               (t                       ; should be only tty-like envs
-                                ,(funcall expand-for-kind 'tty-colors spec))))))))
+         (let ((expand-with-func
+                (lambda (func spec)
+                  (let (reduced-color-list)
+                    (dolist (col colors reduced-color-list)
+                      (push (list (car col) (funcall func col))
+                            reduced-color-list))
+                    (eval `(let ,reduced-color-list
+                             (backquote ,spec))))))
+               whole-theme)
+           (pcase-dolist (`(,face . ,spec) faces)
+             (push `(,face
+                     ((((min-colors 16777216)) ; fully graphical envs
+                       ,(funcall expand-with-func 'cadr spec))
+                      (((min-colors 256))      ; terminal withs 256 colors
+                       ,(if dracula-use-24-bit-colors-on-256-colors-terms
+                            (funcall expand-with-func 'cadr spec)
+                          (funcall expand-with-func 'caddr spec)))
+                      (t                       ; should be only tty-like envs
+                       ,(funcall expand-with-func 'cadddr spec))))
+                   whole-theme))
+           whole-theme))
+
+  (apply #'custom-theme-set-variables
+         'dracula
+         (let ((get-func
+                (pcase (display-color-cells)
+                  ((pred (<= 16777216)) 'car) ; fully graphical envs
+                  ((pred (<= 256)) 'cadr)     ; terminal withs 256 colors
+                  (_ 'caddr))))               ; should be only tty-like envs
+           `((ansi-color-names-vector
+              [,(funcall get-func (alist-get 'dracula-bg colors))
+               ,(funcall get-func (alist-get 'dracula-red colors))
+               ,(funcall get-func (alist-get 'dracula-green colors))
+               ,(funcall get-func (alist-get 'dracula-yellow colors))
+               ,(funcall get-func (alist-get 'dracula-comment colors))
+               ,(funcall get-func (alist-get 'dracula-purple colors))
+               ,(funcall get-func (alist-get 'dracula-cyan colors))
+               ,(funcall get-func (alist-get 'dracula-fg colors))])))))
 
 
 ;;;###autoload
@@ -795,7 +843,6 @@ read it before opening a new issue about your will.")
 (provide-theme 'dracula)
 
 ;; Local Variables:
-;; no-byte-compile: t
 ;; indent-tabs-mode: nil
 ;; End:
 
