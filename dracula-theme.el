@@ -18,6 +18,12 @@
 
 ;;; News:
 
+;;;; Version 1.8.3
+
+;; Add missing comma in front of lsp-ui-sideline-current-symbol color
+;; Change default region face
+;; Improve tab-line-* faces
+
 ;;;; Version 1.8.2
 
 ;; Fix ansi-color definition
@@ -195,7 +201,7 @@ read it before opening a new issue about your will.")
                (fringe :background ,dracula-bg :foreground ,fg4)
                (header-line :inherit 'mode-line)
                (highlight :foreground ,fg3 :background ,dracula-current)
-               (hl-line :background ,dracula-current :extend t)
+               (hl-line :background ,bg2 :extend t)
                (info-quoted-name :foreground ,dracula-orange)
                (info-string :foreground ,dracula-yellow)
                (lazy-highlight :foreground ,fg2 :background ,bg2)
@@ -222,7 +228,7 @@ read it before opening a new issue about your will.")
                       (list :foreground dracula-comment :box dracula-bg)
                     (list :foreground fg4 :box bg2)))
                (read-multiple-choice-face :inherit completions-first-difference)
-               (region :inherit match :extend t)
+               (region :background ,dracula-current :extend nil)
                (shadow :foreground ,dracula-comment)
                (success :foreground ,dracula-green)
                (tooltip :foreground ,dracula-fg :background ,dracula-current)
@@ -611,7 +617,7 @@ read it before opening a new issue about your will.")
                (lsp-ui-peek-selection :inherit match)
                (lsp-ui-sideline-symbol :foreground ,fg4 :box (:line-width -1 :color ,fg4) :height 0.99)
                (lsp-ui-sideline-current-symbol :foreground ,dracula-fg :weight ultra-bold
-                                               :box (:line-width -1 :color dracula-fg) :height 0.99)
+                                               :box (:line-width -1 :color ,dracula-fg) :height 0.99)
                (lsp-ui-sideline-code-action :foreground ,dracula-yellow)
                (lsp-ui-sideline-symbol-info :slant italic :height 0.99)
                (lsp-ui-doc-background :background ,dracula-bg)
@@ -906,13 +912,19 @@ read it before opening a new issue about your will.")
                (tab-bar-tab-inactive :foreground ,dracula-purple :background ,bg2
                                      :box (:line-width 2 :color ,bg2 :style nil))
                (tab-line :foreground ,dracula-purple :background ,dracula-current
-                         :height 0.9 :inherit variable-pitch)
-               (tab-line-tab :foreground ,dracula-pink :background ,dracula-bg
-                             :box (:line-width 2 :color ,dracula-bg :style nil))
-               (tab-line-tab-inactive :foreground ,dracula-purple :background ,bg2
-                                      :box (:line-width 2 :color ,bg2 :style nil))
-               (tab-line-tab-current :inherit tab-line-tab)
+                         :height 0.92 :inherit variable-pitch)
                (tab-line-close-highlight :foreground ,dracula-red)
+               (tab-line-highlight :weight bold)
+               (tab-line-tab :foreground ,dracula-purple :background ,bg2
+                             :box (:line-width 4 :color ,bg2 :style nil))
+               (tab-line-tab-current :foreground ,dracula-pink :background ,dracula-bg
+                                     :box (:line-width 4 :color ,dracula-bg :style nil)
+                                     :weight bold)
+               (tab-line-tab-group :background ,dracula-comment)
+               (tab-line-tab-inactive :inherit tab-line-tab)
+               (tab-line-tab-inactive-alternate :background ,bg3)
+               (tab-line-tab-modified :slant italic)
+               (tab-line-tab-special :foreground ,dracula-green)
                ;; telephone-line
                (telephone-line-accent-active :background ,dracula-bg :foreground ,dracula-pink)
                (telephone-line-accent-inactive :background ,bg2 :foreground ,dracula-purple)
